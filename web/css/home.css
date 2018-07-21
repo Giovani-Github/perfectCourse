@@ -1,0 +1,46 @@
+
+.per-gallery .thumbnail {
+    padding: 0;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: none;
+    transition: 0.15s ease-in-out;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.per-gallery .thumbnail:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.per-gallery  .lightbox .courseBg {
+    font-weight: bold;
+    font-size: 2.5em;
+    padding-top: 30%;
+    padding-bottom: 30%;
+    color: #fff;
+    background-color: #28a4c9;
+    width: 100%;
+}
+
+.per-gallery .caption{
+    padding: 26px 30px;
+    text-align: center;
+}
+
+.per-gallery .caption h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.per-gallery .caption p {
+    font-size: 14px;
+    color: #7b7d7d;
+    margin: 0;
+    /*字数超出一行，显示...*/
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
