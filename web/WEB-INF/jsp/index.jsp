@@ -1,3 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -5,10 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>精品课程</title>
-    <link rel="stylesheet" href="lib/bootstrap-3.3.6/css/bootstrap.min.css">
-    <link href="lib/flat-ui-master/css/flat-ui.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="<%=basePath%>lib/bootstrap-3.3.6/css/bootstrap.min.css">
+    <link href="<%=basePath%>lib/flat-ui-master/css/flat-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=basePath%>css/main.css">
+    <link rel="stylesheet" href="<%=basePath%>css/home.css">
 </head>
 <body>
 <div class="perfect-container">
@@ -43,17 +49,17 @@
             <ul class="nav navbar-nav navbar-right navbar-right-perfect">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle dropdown-toggle-perfect" data-toggle="dropdown">
-                        <img class="img-circle img-circle-perfect" src="images/aa.png"/>
+                        <img class="img-circle img-circle-perfect" src="<%=basePath%>images/aa.png"/>
                         <span>登录</span>
                     </a>
 
 
                     <!--<ul class="dropdown-menu alreadyLog">-->
-                        <!--<li>-->
-                            <!--<a href="#">消息</a>-->
-                        <!--</li>-->
-                        <!--<li><a href="#">修改密码</a></li>-->
-                        <!--<li><a href="#">退出登录</a></li>-->
+                    <!--<li>-->
+                    <!--<a href="#">消息</a>-->
+                    <!--</li>-->
+                    <!--<li><a href="#">修改密码</a></li>-->
+                    <!--<li><a href="#">退出登录</a></li>-->
                     <!--</ul>-->
 
                     <ul class="dropdown-menu ontLog">
@@ -86,7 +92,7 @@
 
                 <div class="col-sm-6  col-md-4">
                     <div class="thumbnail">
-                        <a class="lightbox" href="video.html">
+                        <a class="lightbox" href="video.jsp">
                             <div class="courseBg text-center">
                                 第1讲
                             </div>
@@ -203,9 +209,9 @@
 
 </div>
 
-<script type="text/javascript" src="lib/jquery-2.1.4-dist/jquery.min.js"></script>
-<script type="text/javascript" src="lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/jquery-2.1.4-dist/jquery.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/main.js"></script>
 
 
 </body>

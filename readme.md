@@ -21,3 +21,25 @@
 
 * 未完成
 
+#### 项目错误总结
+
+1. 页面静态资源加载问题
+
+   > 由[ssmDemo1](https://github.com/Giovani-Github/ssmDemo1)项目可以知道此问题解决方法
+
+   但问题未解决，是因为jsp文件对css/js的导入方式不正确
+
+   ![](https://raw.githubusercontent.com/Giovani-Github/Giovani-resource/master/markdown-resource/2018-07-21_165942.png)
+
+   需改成：
+
+   ![](https://raw.githubusercontent.com/Giovani-Github/Giovani-resource/master/markdown-resource/2018-07-21_170234.png)
+
+2. idea找不到request问题
+
+   需导入`tomcat/lib/servlet-api.jar`
+
+
+
+
+

@@ -1,3 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -6,10 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>精品课程</title>
     <!-- Loading Flat UI -->
-    <link rel="stylesheet" href="lib/bootstrap-3.3.6/css/bootstrap.min.css">
-    <link href="lib/flat-ui-master/css/flat-ui.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/video.css">
+    <link rel="stylesheet" href="<%=basePath%>lib/bootstrap-3.3.6/css/bootstrap.min.css">
+    <link href="<%=basePath%>lib/flat-ui-master/css/flat-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=basePath%>css/main.css">
+    <link rel="stylesheet" href="<%=basePath%>css/video.css">
 </head>
 <body>
 
@@ -46,7 +53,7 @@
             <ul class="nav navbar-nav navbar-right navbar-right-perfect">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle dropdown-toggle-perfect" data-toggle="dropdown">
-                        <img class="img-circle img-circle-perfect" src="images/aa.png"/>
+                        <img class="img-circle img-circle-perfect" src="<%=basePath%>images/aa.png"/>
                         <span>登录</span>
                     </a>
 
@@ -87,7 +94,7 @@
 
             <div class="video-perfect">
                 <video class="video-js" preload="auto" poster="docs/assets/img/video/poster.jpg" data-setup="{}">
-                    <source src="video/bb.webm" type="video/webm">
+                    <source src="../../video/bb.webm" type="video/webm">
                     <!--<source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm">-->
                 </video>
             </div>
@@ -114,12 +121,12 @@
     <!--/main content-->
 </div>
 
-<script type="text/javascript" src="lib/jquery-2.1.4-dist/jquery.min.js"></script>
-<script type="text/javascript" src="lib/jqueryFlexText/jquery.flexText.js"></script>
-<script type="text/javascript" src="lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="lib/video/js/video.js"></script>
+<script type="text/javascript" src="../../lib/jquery-2.1.4-dist/jquery.min.js"></script>
+<script type="text/javascript" src="../../lib/jqueryFlexText/jquery.flexText.js"></script>
+<script type="text/javascript" src="../../lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../lib/video/js/video.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/video.js"></script>
+<script type="text/javascript" src="../../js/video.js"></script>
 
 
 <script>
