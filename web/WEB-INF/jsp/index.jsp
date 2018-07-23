@@ -98,6 +98,7 @@
                             <a class="lightbox" href="<%=basePath%>page/toVideo.action?video_id=${video.video_id}">
                                 <div class="courseBg text-center">
                                         ${video.videoname}
+
                                 </div>
                             </a>
                             <div class="caption">
