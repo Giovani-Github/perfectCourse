@@ -11,8 +11,9 @@ create table t_comment
 (
    comment_id           varchar(50) not null,
    user_id              varchar(50) comment '这条评论属于哪个用户',
-   video_id             varbinary(50) comment '这条评论在哪个视频底下',
-   content              varchar(3000) comment '这条评论的内容',
+   video_id             varchar(50) comment '这条评论在哪个视频底下',
+   content              varchar(3000) comment '这条评论的内容
+            ',
    createtime           timestamp comment '这条评论生成的时间',
    primary key (comment_id)
 );
@@ -37,11 +38,13 @@ alter table t_user comment '用户数据表';
 /*==============================================================*/
 create table t_video
 (
-   video_id             varbinary(50) not null,
+   video_id             varchar(50) not null,
    videoname            varchar(40) comment '视频的名称
             ',
-   videodir             varbinary(600) comment '视频存放在项目中的那个目录，尽量使用相对目录',
-   videoinfo            varbinary(2000) comment '对视频内容的说明',
+   videodir             varchar(600) comment '视频存放在项目中的那个目录，尽量使用相对目录',
+   videoinfo            varchar(2000) comment '对视频内容的说明',
+   filename             varchar(40),
+   filetype             varchar(40),
    primary key (video_id)
 );
 

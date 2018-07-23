@@ -33,9 +33,8 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">
+                    <a href="<%=basePath%>page/toHome.action">
                         首页
-
                     </a>
                 </li>
                 <li class="active"><a href="#">课程管理</a></li>
@@ -94,7 +93,7 @@
 
             <div class="video-perfect">
                 <video class="video-js" preload="auto" poster="docs/assets/img/video/poster.jpg" data-setup="{}">
-                    <source src="../../video/bb.webm" type="video/webm">
+                    <source src="<%=basePath%>video/bb.webm" type="video/webm">
                     <!--<source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm">-->
                 </video>
             </div>
@@ -121,16 +120,16 @@
     <!--/main content-->
 </div>
 
-<script type="text/javascript" src="../../lib/jquery-2.1.4-dist/jquery.min.js"></script>
-<script type="text/javascript" src="../../lib/jqueryFlexText/jquery.flexText.js"></script>
-<script type="text/javascript" src="../../lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../lib/video/js/video.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="../../js/video.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/jquery-2.1.4-dist/jquery.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/jqueryFlexText/jquery.flexText.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/video/js/video.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/main.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/video.js"></script>
 
 
 <script>
-    videojs.options.flash.swf = "lib/video/js/video-js.swf"
+    // videojs.options.flash.swf = "lib/video/js/video-js.swf"
 </script>
 </body>
 </html>

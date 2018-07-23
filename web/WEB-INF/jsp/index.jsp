@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="giovani" uri="http://giovani.com/common/" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -29,9 +31,8 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">
+                    <a href="<%=basePath%>page/toHome.action">
                         首页
-
                     </a>
                 </li>
                 <li class="active"><a href="#">课程管理</a></li>
@@ -87,120 +88,48 @@
 
         <div class="per-gallery">
 
+
             <!-- 視頻展示列表 -->
             <div class="row">
 
-                <div class="col-sm-6  col-md-4">
-                    <div class="thumbnail">
-                        <a class="lightbox" href="video.jsp">
-                            <div class="courseBg text-center">
-                                第1讲
+                <c:forEach items="${videoPage.rows }" var="video">
+                    <div class="col-sm-6  col-md-4">
+                        <div class="thumbnail">
+                            <a class="lightbox" href="<%=basePath%>page/toVideo.action?video_id=${video.video_id}">
+                                <div class="courseBg text-center">
+                                        ${video.videoname}
+                                </div>
+                            </a>
+                            <div class="caption">
+                                    <%--<h3>${video.videoname}</h3>--%>
+                                <p>${video.videoinfo}</p>
                             </div>
-                        </a>
-                        <div class="caption">
-                            <h3>第一讲</h3>
-                            <p>视频内容简介zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6  col-md-4">
-                    <div class="thumbnail">
-                        <a class="lightbox" href="video/1482674019517.mp4">
-                            <div class="courseBg text-center">
-                                第1讲
-                            </div>
-                        </a>
-                        <div class="caption">
-                            <h3>第一讲</h3>
-                            <p>视频内容简介zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6  col-md-4">
-                    <div class="thumbnail">
-                        <a class="lightbox" href="video/1482674019517.mp4">
-                            <div class="courseBg text-center">
-                                第1讲
-                            </div>
-                        </a>
-                        <div class="caption">
-                            <h3>第一讲</h3>
-                            <p>视频内容简介zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6  col-md-4">
-                    <div class="thumbnail">
-                        <a class="lightbox" href="video/1482674019517.mp4">
-                            <div class="courseBg text-center">
-                                第1讲
-                            </div>
-                        </a>
-                        <div class="caption">
-                            <h3>第一讲</h3>
-                            <p>视频内容简介zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6  col-md-4">
-                    <div class="thumbnail">
-                        <a class="lightbox" href="video/1482674019517.mp4">
-                            <div class="courseBg text-center">
-                                第1讲
-                            </div>
-                        </a>
-                        <div class="caption">
-                            <h3>第一讲</h3>
-                            <p>视频内容简介zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6  col-md-4">
-                    <div class="thumbnail">
-                        <a class="lightbox" href="video/1482674019517.mp4">
-                            <div class="courseBg text-center">
-                                第1讲
-                            </div>
-                        </a>
-                        <div class="caption">
-                            <h3>第一讲</h3>
-                            <p>视频内容简介zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6  col-md-4">
-                    <div class="thumbnail">
-                        <a class="lightbox" href="video/1482674019517.mp4">
-                            <div class="courseBg text-center">
-                                第1讲
-                            </div>
-                        </a>
-                        <div class="caption">
-                            <h3>第一讲</h3>
-                            <p>视频内容简介zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
 
             </div>
             <!-- /視頻展示列表 -->
 
             <!-- 分页 -->
+            <giovani:page url="${pageContext.request.contextPath }/page/toHome.action"/>
 
-            <ul class="pagination-plain pagination-perfecet">
-                <li class="previous"><a href="#fakelink">上一页</a></li>
-                <li><a href="#fakelink">1</a></li>
-                <li><a href="#fakelink">2</a></li>
-                <li><a href="#fakelink">3</a></li>
-                <li><a href="#fakelink">4</a></li>
-                <li class="active"><a href="#fakelink">5</a></li>
-                <li><a href="#fakelink">6</a></li>
-                <li><a href="#fakelink">7</a></li>
-                <li><a href="#fakelink">8</a></li>
-                <li><a href="#fakelink">9</a></li>
-                <li><a href="#fakelink">10</a></li>
-                <li class="next"><a href="#fakelink">下一页</a></li>
-            </ul>
+            <%--<ul class="pagination-plain pagination-perfecet">--%>
+            <%--<c:forEach items="${videoPage.}">--%>
+            <%--<li class="previous"><a href="#fakelink">上一页</a></li>--%>
+            <%--<li><a href="#fakelink">1</a></li>--%>
+            <%--<li><a href="#fakelink">2</a></li>--%>
+            <%--<li><a href="#fakelink">3</a></li>--%>
+            <%--<li><a href="#fakelink">4</a></li>--%>
+            <%--<li class="active"><a href="#fakelink">5</a></li>--%>
+            <%--<li><a href="#fakelink">6</a></li>--%>
+            <%--<li><a href="#fakelink">7</a></li>--%>
+            <%--<li><a href="#fakelink">8</a></li>--%>
+            <%--<li><a href="#fakelink">9</a></li>--%>
+            <%--<li><a href="#fakelink">10</a></li>--%>
+            <%--<li class="next"><a href="#fakelink">下一页</a></li>--%>
+            <%--</c:forEach>--%>
+            <%--</ul>--%>
 
             <!-- /分页 -->
         </div>
@@ -213,6 +142,6 @@
 <script type="text/javascript" src="<%=basePath%>lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/main.js"></script>
 
-
+</div>
 </body>
 </html>

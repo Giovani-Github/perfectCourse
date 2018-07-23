@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.giovani.perc.mapper.VideoMapper">
+
+    <select id="findVideoList" parameterType="QueryVo" resultType="Video">
+        SELECT * FROM t_video WHERE videoname LIKE '%${videoname}%' LIMIT #{start}, #{rows};
+    </select>
+
+    <select id="findVideoCount" parameterType="QueryVo" resultType="int">
+        SELECT count(1) FROM t_video WHERE videoname = #{videoname}
+    </select>
+
+</mapper>
