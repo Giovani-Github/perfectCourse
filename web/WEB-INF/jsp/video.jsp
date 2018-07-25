@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -84,16 +85,16 @@
     <!-- main content -->
     <div class="container gallery-container">
 
-        <h1>精品课程</h1>
+        <h1>${video.videoname}</h1>
 
-        <p class="page-description text-center">随堂录制的一些精彩部分的教学视频</p>
+        <p class="page-description text-center">${video.videoinfo}</p>
 
         <!-- video -->
         <div class="per-gallery">
 
             <div class="video-perfect">
                 <video class="video-js" preload="auto" poster="docs/assets/img/video/poster.jpg" data-setup="{}">
-                    <source src="<%=basePath%>video/bb.webm" type="video/webm">
+                    <source src="<%=basePath%>${video.videodir}/${video.filename}${video.filetype}" type="video/webm">
                     <!--<source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm">-->
                 </video>
             </div>

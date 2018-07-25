@@ -12,4 +12,8 @@
         SELECT count(1) FROM t_video WHERE videoname = #{videoname}
     </select>
 
+    <select id="findVidoeById" parameterType="String" resultType="Video">
+        SELECT * FROM t_video WHERE video_id = #{video_id}
+    </select>
+
 </mapper>

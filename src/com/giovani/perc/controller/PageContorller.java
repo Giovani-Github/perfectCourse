@@ -48,6 +48,7 @@ public class PageContorller {
 
     /**
      * 前往视频播放页
+     * 访问地址：http://localhost:8080/perfectCourse/page/toVideo.action
      *
      * @Param: []
      * @return: java.lang.String
@@ -55,7 +56,14 @@ public class PageContorller {
      * @Date: 2018/7/21 20:58
      */
     @RequestMapping("toVideo")
-    public String toVideo() {
+    public String toVideo(Model model, String video_id) {
+
+        // 根据id查询出视频
+        Video video = videoService.findVideoById(video_id);
+
+        // 存入模型中，返回到页面上
+        model.addAttribute("video", video);
+
         return "video";
     }
 }

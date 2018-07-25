@@ -32,9 +32,15 @@ public class VideoServiceImpl implements VideoService {
 
         int videoCount = videoMapper.findVideoCount(queryVo);
 
-        Page<Video> videoPage = new Page<>(videoCount, queryVo.getPage(), queryVo.getRows(), videoList);
+        Page<Video> videoPage = new Page<Video>(videoCount, queryVo.getPage(), queryVo.getRows(), videoList);
 
         return videoPage;
+    }
+
+    @Override
+    public Video findVideoById(String video_id) {
+        Video vidoe = videoMapper.findVidoeById(video_id);
+        return vidoe;
     }
 
 }

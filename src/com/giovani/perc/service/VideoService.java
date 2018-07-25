@@ -22,4 +22,14 @@ public interface VideoService {
      */
     public Page<Video> findVideoList(QueryVo queryVo);
 
+    /**
+     * 根据id查询视频
+     *
+     * @Param: [video_id]
+     * @return: com.giovani.perc.pojo.Video
+     * @Author: Giovani
+     * @Date: 2018/7/25 10:15
+     */
+    public Video findVideoById(String video_id);
+
 }

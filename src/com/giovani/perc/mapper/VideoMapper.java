@@ -12,7 +12,6 @@ import java.util.List;
  * @Create: 2018/7/21 21:40
  */
 public interface VideoMapper {
-    // TODO: 2018/7/21 21:43 下一步编写VideoMapper.xml文件，编写查找视频列表的sql语句
 
     /**
      * 分页查找所有视频
@@ -33,4 +32,14 @@ public interface VideoMapper {
      * @Date: 2018/7/23 10:38
      */
     public int findVideoCount(QueryVo queryVo);
+
+    /**
+     * 根据id查询视频
+     *
+     * @Param: [queryVo]
+     * @return: com.giovani.perc.pojo.Video
+     * @Author: Giovani
+     * @Date: 2018/7/25 10:12
+     */
+    public Video findVidoeById(String video_id);
 }
