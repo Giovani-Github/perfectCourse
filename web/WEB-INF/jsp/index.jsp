@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<%=basePath%>css/home.css">
 </head>
 <body>
+
 <div class="perfect-container">
     <!-- 导航栏 -->
     <nav class="navbar navbar-inverse navbar-embossed navbar-lg navbar-perfect" role="navigation">
@@ -67,7 +68,8 @@
                         <form action="" method="post" class="ontLog">
                             <input type="text" class="form-control form-control-perfect ontLog" placeholder="用户名">
                             <input type="password" class="form-control form-control-perfect ontLog" placeholder="密码">
-                            <button type="submit" class="btn btn-primary btn-xs btn-xs-perfect ontLog">登录</button>
+                            <button type="submit" class="btn btn-primary btn-xs btn-xs-perfect ontLog login-perfect">登录
+                            </button>
                             <button type="submit" class="btn btn-default btn-xs btn-xs-perfect right-perfect ontLog">
                                 注册
                             </button>
@@ -141,6 +143,7 @@
 
 <script type="text/javascript" src="<%=basePath%>lib/jquery-2.1.4-dist/jquery.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/jquery-ui/jquery-ui.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/main.js"></script>
 
 </div>
