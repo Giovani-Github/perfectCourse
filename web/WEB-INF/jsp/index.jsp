@@ -65,12 +65,18 @@
                     <!--</ul>-->
 
                     <ul class="dropdown-menu ontLog">
-                        <form action="" method="post" class="ontLog">
-                            <input type="text" class="form-control form-control-perfect ontLog" placeholder="用户名">
-                            <input type="password" class="form-control form-control-perfect ontLog" placeholder="密码">
-                            <button type="submit" class="btn btn-primary btn-xs btn-xs-perfect ontLog login-perfect">登录
+                        <form id="user" class="ontLog" method="post" enctype="multipart/form-data">
+                            <input name="username" type="text" class="form-control form-control-perfect ontLog"
+                                   placeholder="用户名">
+                            <input name="password" type="password" class="form-control form-control-perfect ontLog"
+                                   placeholder="密码">
+                            <button type="submit" id="login"
+                                    class="btn btn-primary btn-xs btn-xs-perfect ontLog login-perfect"
+                                    onclick="login();">登录
                             </button>
-                            <button type="submit" class="btn btn-default btn-xs btn-xs-perfect right-perfect ontLog">
+                            <button type="submit" id="regist"
+                                    class="btn btn-default btn-xs btn-xs-perfect right-perfect ontLog"
+                                    onclick="regist();">
                                 注册
                             </button>
                         </form>
@@ -145,7 +151,26 @@
 <script type="text/javascript" src="<%=basePath%>lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>lib/jquery-ui/jquery-ui.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/main.js"></script>
+<script type="text/javascript" src="<%=basePath%>lib/jquery.form.js"></script>
 
+
+<script type="text/javascript">
+    $("#regist").on("click", function () {
+        $('#user').ajaxSubmit(      //ajax方式提交表单
+            {
+                url: '/perfectCourse/user/regist.action',
+                type: 'get',
+                dataType:
+                    'json',
+                success:
+
+                    function (data) {
+                        alert(data);
+                    }
+            })
+        ;
+    });
+</script>
 </div>
 </body>
 </html>

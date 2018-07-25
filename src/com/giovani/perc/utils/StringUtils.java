@@ -26,4 +26,20 @@ public class StringUtils {
         System.out.println(uuid());
     }
 
+    /**
+     * 判断字符串是否等于空串和null
+     *
+     * @Param: [username]
+     * @return: boolean
+     * @Author: Giovani
+     * @Date: 2018/7/25 14:33
+     */
+    public static boolean isEmpty(String str) {
+
+        if (str == "" || str == null) {
+            return true;
+        }
+        return false;
+        
+    }
 }
