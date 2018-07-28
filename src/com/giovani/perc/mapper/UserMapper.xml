@@ -6,4 +6,8 @@
     <insert id="addUser" parameterType="User">
         INSERT INTO t_user VALUE (#{user_id}, #{username}, #{password})
     </insert>
+
+    <select id="findUserByUsername" parameterType="String" resultType="User">
+        SELECT *  FROM t_user WHERE username = #{username}
+    </select>
 </mapper>

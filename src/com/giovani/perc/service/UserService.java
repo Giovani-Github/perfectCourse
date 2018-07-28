@@ -29,5 +29,5 @@ public interface UserService {
      * @Author: Giovani
      * @Date: 2018/7/25 14:28
      */
-    public void login(User user) throws UserException;
+    public User login(User user) throws UserException;
 }

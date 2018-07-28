@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户信息请求处理
@@ -22,20 +23,30 @@ public class UserContorller {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("regist")
-    @ResponseBody
-    public String regist(User user, Model model) {
+    @RequestMapping("userRL")
+    public String userRL(Model model, User user, String method, HttpServletRequest request) {
 
-        try {
-            userService.regist(user);
-            model.addAttribute("注册成功");
-        } catch (UserException e) {
-            model.addAttribute(e.getMessage());
+        if (method.equals("regist")) {
+            try {
+                userService.regist(user);
+                model.addAttribute("msg", "注册成功");
+
+            } catch (UserException e) {
+                model.addAttribute("msg", e.getMessage());
+            }
+        } else if (method.equals("login")) {
+            try {
+                User loginUser = userService.login(user);
+                if (loginUser != null) {
+                    request.getSession().setAttribute("user", loginUser);
+                }
+                model.addAttribute("msg", "登录成功");
+            } catch (UserException e) {
+                model.addAttribute("msg", e.getMessage());
+            }
         }
 
-        // TODO: 2018/7/25 17:30 可以成功接收ajax提交的form表单参数，但是无法完成参数返回让ajax接收
-        return "forward:/page/toHome.action";
-
+        return "msg";
     }
 
     @RequestMapping("login")

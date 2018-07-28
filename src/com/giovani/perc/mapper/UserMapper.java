@@ -19,4 +19,14 @@ public interface UserMapper {
      * @Date: 2018/7/25 14:22
      */
     public void addUser(User user);
+
+    /**
+     * 根据用户名查找用户
+     *
+     * @Param: [username]
+     * @return: com.giovani.perc.pojo.User
+     * @Author: Giovani
+     * @Date: 2018/7/28 19:12
+     */
+    public User findUserByUsername(String username);
 }

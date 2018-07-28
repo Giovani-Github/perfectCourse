@@ -66,4 +66,9 @@ public class PageContorller {
 
         return "video";
     }
+
+    @RequestMapping("toMsg")
+    public String toMsg(Model model, String video_id) {
+        return "msg";
+    }
 }

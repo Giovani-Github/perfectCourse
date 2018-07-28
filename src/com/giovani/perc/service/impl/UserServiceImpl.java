@@ -26,6 +26,12 @@ public class UserServiceImpl implements UserService {
             throw new UserException("用户名不能为空");
         }
 
+        // 校验用户名是否已经存在
+        if (userMapper.findUserByUsername(user.getUsername()) != null) {
+            throw new UserException("该用户名已存在");
+        }
+
+        // 密码校验
         if (StringUtils.isEmpty(user.getPassword())) {
             throw new UserException("密码不能为空");
         }
@@ -38,8 +44,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void login(User user) {
-        //        userMapper.addUser(user);
+    public User login(User user) {
+        // 校验用户名是否已经存在
+        User userByUsername = userMapper.findUserByUsername(user.getUsername());
+
+        if (userByUsername == null) {
+            throw new UserException("该用户名不存在存在");
+        } else if (StringUtils.isEmpty(user.getPassword())) {
+            throw new UserException("密码不能为空");
+        } else if (!user.getPassword().equals(userByUsername.getPassword())) {
+            throw new UserException("密码错误");
+        }
+
+        return userByUsername;
     }
 
 }
