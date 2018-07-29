@@ -1,13 +1,17 @@
 package com.giovani.perc.controller;
 
+import com.giovani.perc.pojo.CommentQueryVo;
 import com.giovani.perc.pojo.QueryVo;
 import com.giovani.perc.pojo.Video;
+import com.giovani.perc.service.CommentService;
 import com.giovani.perc.service.VideoService;
 import com.giovani.perc.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * 页面跳转信息请求处理
@@ -21,6 +25,9 @@ public class PageContorller {
 
     @Autowired
     private VideoService videoService;
+
+    @Autowired
+    private CommentService commentService;
 
     /**
      * 前往主页
@@ -60,9 +67,12 @@ public class PageContorller {
 
         // 根据id查询出视频
         Video video = videoService.findVideoById(video_id);
+        // 根据视频id查询出评论列表
+        List<CommentQueryVo> commentQueryVoList = commentService.findCommentListByVideoId(video_id);
 
         // 存入模型中，返回到页面上
         model.addAttribute("video", video);
+        model.addAttribute("commentList", commentQueryVoList);
 
         return "video";
     }

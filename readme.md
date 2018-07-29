@@ -76,3 +76,16 @@
 5. **`contorller`无法获得`form`表单传递的参数**
 
    `contorller`默认接收`get`方式提交的表单，而`form`表单设置成了`post`提交，自然无法获得表单提交的参数
+
+6. ajax请求后台数据正确写法
+
+   `ajax:`
+
+   ![](https://raw.githubusercontent.com/Giovani-Github/Giovani-resource/master/markdown-resource/Snipaste_2018-07-29_14-04-44.png)
+
+   
+
+   `java:`
+
+   ![](https://raw.githubusercontent.com/Giovani-Github/Giovani-resource/master/markdown-resource/Snipaste_2018-07-29_14-05-15.png)
+

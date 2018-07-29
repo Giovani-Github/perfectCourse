@@ -133,7 +133,23 @@
             <!--评论区域 end-->
             <!--评论展现 回复区域 begin-->
             <div class="comment-show">
-
+                <c:forEach items="${commentList}" var="comment">
+                    <div class="comment-show-con clearfix"><img class="comment-show-con-img pull-left"
+                                                                src="<%=basePath%>images/aa.png" alt="">
+                        <div class="comment-show-con-list pull-left clearfix">
+                            <div class="pl-text clearfix"><a href="#"
+                                                             class="comment-size-name">${comment.username}&nbsp;:</a>
+                                <span class="my-pl-con">&nbsp;${comment.content}</span></div>
+                            <div class="date-dz"><span
+                                    class="date-dz-left pull-left comment-time">${comment.createtime}</span>
+                                <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;"
+                                                                                          class="removeBlock">删除</a></a>
+                                </div>
+                            </div>
+                            <div class="hf-list-con"></div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
             <!-- 评论展现 回复区域 end-->
         </div>
@@ -218,13 +234,14 @@
                 function (result) {
                     alert(result.msg);
                     if (result.code == 1)
-                        a();
+                        window.location.reload();
+                    // a();
                 }
         })
 
         function a() {
             //动态创建评论模块
-            oHtml = '<div class="comment-show-con clearfix"> <img class="comment-show-con-img pull-left" src="<%=basePath%>images/aa.png" alt=""> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">${loginUser.username}&nbsp;:</a> <span class="my-pl-con">&nbsp;' + oSize + '</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">' + now + '</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a></a> </div> </div><div class="hf-list-con"></div></div> </div>';
+            oHtml = '<div class="comment-show-con clearfix"> <img class="comment-show-con-img pull-left" src="<%=basePath%>images/aa.png" alt=""> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">${loginUser.username}&nbsp;:</a> <span class="my-pl-con">&nbsp;\' + oSize + \'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">\' + now + \'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a></a> </div> </div><div class="hf-list-con"></div></div> </div>';
             if (oSize.replace(/(^\s*)|(\s*$)/g, "") != '') {
                 $('.reviewArea ').siblings('.comment-show').prepend(oHtml);
                 $('.comment-input').prop('value', '').siblings('pre').find('span').text('');
