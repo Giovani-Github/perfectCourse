@@ -8,6 +8,10 @@
     </insert>
 
     <select id="findCommentListByVideoId" parameterType="String" resultType="CommentQueryVo">
-        SELECT u.username, c.content, c.createtime FROM t_user u,t_comment c WHERE u.user_id=c.user_id AND c.video_id = #{video_id} ORDER BY createtime desc;
+        SELECT u.username, c.content, c.createtime, c.comment_id, u.user_id FROM t_user u,t_comment c WHERE u.user_id=c.user_id AND c.video_id = #{video_id} ORDER BY createtime desc;
     </select>
+
+    <delete id="deleteComment" parameterType="String">
+        DELETE FROM t_comment WHERE comment_id = #{comment_id}
+    </delete>
 </mapper>

@@ -11,6 +11,24 @@ public class CommentQueryVo {
     private String username; // 谁评论的
     private String content; // 评论内容
     private String createtime; // 评论创建时间
+    private String comment_id; // 评论的id
+    private String user_id; // 谁评论的
+
+    public String getComment_id() {
+        return comment_id;
+    }
+
+    public void setComment_id(String comment_id) {
+        this.comment_id = comment_id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
 
     public String getUsername() {
         return username;

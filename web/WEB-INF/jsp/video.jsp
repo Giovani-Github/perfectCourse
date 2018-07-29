@@ -142,8 +142,9 @@
                                 <span class="my-pl-con">&nbsp;${comment.content}</span></div>
                             <div class="date-dz"><span
                                     class="date-dz-left pull-left comment-time">${comment.createtime}</span>
-                                <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;"
-                                                                                          class="removeBlock">删除</a></a>
+                                <div class="date-dz-right pull-right comment-pl-block">
+                                    <a href="javascript:;" class="removeBlock"
+                                       onclick="deleteComment('${comment.comment_id}')">删除</a></a>
                                 </div>
                             </div>
                             <div class="hf-list-con"></div>
@@ -251,18 +252,28 @@
 
     });
 
-    // 删除评论块
-    $('.commentAll').on('click', '.removeBlock', function () {
-        var oT = $(this).parents('.date-dz-right').parents('.date-dz').parents('.all-pl-con');
-        if (oT.siblings('.all-pl-con').length >= 1) {
-            oT.remove();
-        } else {
-            $(this).parents('.date-dz-right').parents('.date-dz').parents('.all-pl-con').parents('.hf-list-con').css('display', 'none')
-            oT.remove();
-        }
-        $(this).parents('.date-dz-right').parents('.date-dz').parents('.comment-show-con-list').parents('.comment-show-con').remove();
+    // 点击删除评论
+    function deleteComment(comment_id) {
 
-    });
+        if (confirm('确定要删除评论吗?')) {
+            $.ajax({
+                    type: 'POST',
+                    url: '<c:url value="/comment/delete.action" />',
+                    contentType: "application/json",
+                    dataType:
+                        'json',
+                    // 封装json对象，传给服务器
+                    data: comment_id,
+                    success:
+                        function (result) {
+                            alert(result.msg);
+                            if (result.code == 1)
+                                window.location.reload();
+                        }
+                }
+            )
+        }
+    }
 </script>
 
 <script>

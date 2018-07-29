@@ -89,3 +89,11 @@
 
    ![](https://raw.githubusercontent.com/Giovani-Github/Giovani-resource/master/markdown-resource/Snipaste_2018-07-29_14-05-15.png)
 
+7. **页面调用js函数没反应**
+
+   ###### ![](https://raw.githubusercontent.com/Giovani-Github/Giovani-resource/master/markdown-resource/Snipaste_2018-07-29_23-16-01.png)
+
+![](https://raw.githubusercontent.com/Giovani-Github/Giovani-resource/master/markdown-resource/Snipaste_2018-07-29_23-18-14.png)
+
+​	是因为`deleteComment(${comment.comment_id})`，括号内没有加`''`
+

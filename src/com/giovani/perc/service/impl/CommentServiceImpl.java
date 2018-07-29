@@ -41,4 +41,13 @@ public class CommentServiceImpl implements CommentService {
         return commentQueryVoList;
     }
 
+    @Override
+    public void deleteComment(String comment_id) throws RuntimeException {
+        try {
+            commentMapper.deleteComment(comment_id);
+        } catch (RuntimeException e) {
+            throw e;
+        }
+    }
+
 }

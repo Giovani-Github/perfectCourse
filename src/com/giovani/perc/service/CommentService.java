@@ -32,4 +32,14 @@ public interface CommentService {
      * @Date: 2018/7/29 16:35
      */
     public List<CommentQueryVo> findCommentListByVideoId(String video_id);
+
+    /**
+     * 删除评论
+     *
+     * @Param: [comment_id]
+     * @return: void
+     * @Author: Giovani
+     * @Date: 2018/7/29 17:10
+     */
+    public void deleteComment(String comment_id);
 }

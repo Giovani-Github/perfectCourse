@@ -80,4 +80,39 @@ public class CommentContorller {
             }
         }
     }
+
+    /**
+     * 删除评论
+     *
+     * @Param: [comment_id]
+     * @return: void
+     * @Author: Giovani
+     * @Date: 2018/7/29 17:10
+     */
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public void delete(@RequestBody String comment_id, HttpServletResponse response) {
+
+        response.setContentType("text/xml;charset=UTF-8");
+        Map<String, String> msg = new HashMap<>();
+
+        try {
+            commentService.deleteComment(comment_id);
+            msg.put("msg", "删除成功");
+            msg.put("code", "1");
+            response.getWriter().print(JSONUtils.toJSONString(msg));
+            return;
+
+        } catch (RuntimeException e) {
+            try {
+
+                msg.put("msg", "删除失败");
+                response.getWriter().print(JSONUtils.toJSONString(msg));
+                return;
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

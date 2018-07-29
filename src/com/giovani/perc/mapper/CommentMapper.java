@@ -31,4 +31,14 @@ public interface CommentMapper {
      * @Date: 2018/7/29 16:25
      */
     public List<CommentQueryVo> findCommentListByVideoId(String video_id);
+
+    /**
+     * 删除评论
+     *
+     * @Param: [comment_id]
+     * @return: void
+     * @Author: Giovani
+     * @Date: 2018/7/29 17:08
+     */
+    public void deleteComment(String comment_id);
 }
