@@ -48,7 +48,7 @@ public class UserContorller {
             try {
                 User loginUser = userService.login(user);
                 if (loginUser != null) {
-                    request.getSession().setAttribute("user", loginUser);
+                    request.getSession().setAttribute("loginUser", loginUser);
                 }
                 model.addAttribute("msg", "登录成功");
             } catch (UserException e) {
@@ -71,7 +71,7 @@ public class UserContorller {
     @RequestMapping("logout")
     public String logout(HttpServletRequest request) {
 
-        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("loginUser");
         return "redirect:/page/toHome.action";
         //        return "index";
 

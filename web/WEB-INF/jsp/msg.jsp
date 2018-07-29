@@ -57,7 +57,7 @@
                         <img class="img-circle img-circle-perfect" src="<%=basePath%>images/aa.png"/>
                         <span>
                            <c:choose>
-                               <c:when test="${not empty user}">${user.username}</c:when>
+                               <c:when test="${not empty loginUser}">${loginUser.username}</c:when>
                                <c:otherwise>登录</c:otherwise>
                            </c:choose>
                         </span>
@@ -65,7 +65,7 @@
                     </a>
 
                     <c:choose>
-                        <c:when test="${not empty user}">
+                        <c:when test="${not empty loginUser}">
                             <ul class="dropdown-menu alreadyLog">
                                 <li>
                                     <a href="#">消息</a>
@@ -123,15 +123,19 @@
 <script type="text/javascript" src="<%=basePath%>js/video.js"></script>
 <script type="text/javascript" src="<%=basePath%>lib/jquery.form.js"></script>
 <script type="text/javascript">
+    // 用户注册
     $("#regist").on("click", function () {
         var form = document.getElementById('user');
-        document.getElementById(" method").setAttribute("value", "regist");
+        // 更改method参数，说明要进行什么操作
+        document.getElementById("method").setAttribute("value", "regist");
         form.submit()
     });
 
-    $("#regist").on("click", function () {
+    // 用户登录
+    $("#login").on("click", function () {
         var form = document.getElementById('user');
-        document.getElementById(" method").setAttribute("value", "login");
+        // 更改method参数，说明要进行什么操作
+        document.getElementById("method").setAttribute("value", "login");
         form.submit()
     });
 </script>

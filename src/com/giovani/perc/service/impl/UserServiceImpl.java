@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
         User userByUsername = userMapper.findUserByUsername(user.getUsername());
 
         if (userByUsername == null) {
-            throw new UserException("该用户名不存在存在");
+            throw new UserException("该用户名不存在");
         } else if (StringUtils.isEmpty(user.getPassword())) {
             throw new UserException("密码不能为空");
         } else if (!user.getPassword().equals(userByUsername.getPassword())) {
