@@ -23,14 +23,24 @@ public class UserContorller {
     @Autowired
     private UserService userService;
 
+    /**
+     * 用户登录和注册功能
+     * 访问地址: http://localhost:8080/perfectCourse/user/userRL.action?method=regist
+     * 访问地址: http://localhost:8080/perfectCourse/user/userRL.action?method=login
+     *
+     * @Param: [model, user, method, request]
+     * @return: java.lang.String
+     * @Author: Giovani
+     * @Date: 2018/7/29 9:29
+     */
     @RequestMapping("userRL")
     public String userRL(Model model, User user, String method, HttpServletRequest request) {
 
+        // 判断进行登录还是注册操作
         if (method.equals("regist")) {
             try {
                 userService.regist(user);
                 model.addAttribute("msg", "注册成功");
-
             } catch (UserException e) {
                 model.addAttribute("msg", e.getMessage());
             }
@@ -47,11 +57,24 @@ public class UserContorller {
         }
 
         return "msg";
+
     }
 
-    @RequestMapping("login")
-    public String login(User user) {
-        return "redirect:page/toHome.action";
+    /**
+     * 退出登录
+     *
+     * @Param: []
+     * @return: java.lang.String
+     * @Author: Giovani
+     * @Date: 2018/7/29 9:32
+     */
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request) {
+
+        request.getSession().removeAttribute("user");
+        return "redirect:/page/toHome.action";
+        //        return "index";
+
     }
 
 }

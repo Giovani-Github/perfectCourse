@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="giovani" uri="http://giovani.com/common/" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -56,7 +55,7 @@
                         <img class="img-circle img-circle-perfect" src="<%=basePath%>images/aa.png"/>
                         <span>
                            <c:choose>
-                               <C:when test="${not empty user}">${user.username}</C:when>
+                               <c:when test="${not empty user}">${user.username}</c:when>
                                <c:otherwise>登录</c:otherwise>
                            </c:choose>
                         </span>
@@ -70,7 +69,7 @@
                                     <a href="#">消息</a>
                                 </li>
                                 <li><a href="#">修改密码</a></li>
-                                <li><a href="#">退出登录</a></li>
+                                <li><a href="<c:url value='/user/logout.action' />">退出登录</a></li>
                             </ul>
                         </c:when>
                         <c:otherwise>

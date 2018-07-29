@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -54,35 +55,48 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle dropdown-toggle-perfect" data-toggle="dropdown">
                         <img class="img-circle img-circle-perfect" src="<%=basePath%>images/aa.png"/>
-                        <span>登录</span>
+                        <span>
+                           <c:choose>
+                               <c:when test="${not empty user}">${user.username}</c:when>
+                               <c:otherwise>登录</c:otherwise>
+                           </c:choose>
+                        </span>
+
                     </a>
 
+                    <c:choose>
+                        <c:when test="${not empty user}">
+                            <ul class="dropdown-menu alreadyLog">
+                                <li>
+                                    <a href="#">消息</a>
+                                </li>
+                                <li><a href="#">修改密码</a></li>
+                                <li><a href="<c:url value='/user/logout.action' />">退出登录</a></li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <ul class="dropdown-menu ontLog">
+                                <form action="<c:url value='/user/userRL.action' />" id="user" class="ontLog"
+                                      method="get"
+                                      enctype="multipart/form-data">
+                                    <input id="method" type="hidden" name="method" value="login">
+                                    <input name="username" type="text" class="form-control form-control-perfect ontLog"
+                                           placeholder="用户名">
+                                    <input name="password" type="password"
+                                           class="form-control form-control-perfect ontLog"
+                                           placeholder="密码">
+                                    <button type="submit" id="login"
+                                            class="btn btn-primary btn-xs btn-xs-perfect ontLog login-perfect">登录
+                                    </button>
+                                    <button type="submit" id="regist"
+                                            class="btn btn-default btn-xs btn-xs-perfect right-perfect ontLog">
+                                        注册
+                                    </button>
+                                </form>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>
 
-                    <%--<ul class="dropdown-menu alreadyLog">--%>
-                    <%--<li>--%>
-                    <%--<a href="#">消息</a>--%>
-                    <%--</li>--%>
-                    <%--<li><a href="#">修改密码</a></li>--%>
-                    <%--<li><a href="#">退出登录</a></li>--%>
-                    <%--</ul>--%>
-
-                    <ul class="dropdown-menu ontLog">
-                        <form id="user" class="ontLog" method="post" enctype="multipart/form-data">
-                            <input name="username" type="text" class="form-control form-control-perfect ontLog"
-                                   placeholder="用户名">
-                            <input name="password" type="password" class="form-control form-control-perfect ontLog"
-                                   placeholder="密码">
-                            <button type="submit" id="login"
-                                    class="btn btn-primary btn-xs btn-xs-perfect ontLog login-perfect"
-                                    onclick="login();">登录
-                            </button>
-                            <button type="submit" id="regist"
-                                    class="btn btn-default btn-xs btn-xs-perfect right-perfect ontLog"
-                                    onclick="regist();">
-                                注册
-                            </button>
-                        </form>
-                    </ul>
                 </li>
             </ul>
         </div>
@@ -139,19 +153,15 @@
 
 <script type="text/javascript">
     $("#regist").on("click", function () {
-        $('#user').ajaxSubmit(      //ajax方式提交表单
-            {
-                url: '/perfectCourse/user/regist.action',
-                type: 'get',
-                dataType:
-                    'json',
-                success:
+        var form = document.getElementById('user');
+        document.getElementById(" method").setAttribute("value", "regist");
+        form.submit()
+    });
 
-                    function (data) {
-                        alert(data);
-                    }
-            })
-        ;
+    $("#regist").on("click", function () {
+        var form = document.getElementById('user');
+        document.getElementById(" method").setAttribute("value", "login");
+        form.submit()
     });
 </script>
 
