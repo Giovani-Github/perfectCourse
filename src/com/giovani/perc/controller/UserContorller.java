@@ -6,9 +6,13 @@ import com.giovani.perc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 用户信息请求处理
@@ -75,6 +79,19 @@ public class UserContorller {
         return "redirect:/page/toHome.action";
         //        return "index";
 
+    }
+
+    @RequestMapping(value = "text", method = RequestMethod.POST)
+    public void text(@RequestBody User user, HttpServletResponse response) {
+        System.out.println(user);
+
+        try {
+            response.setContentType("text/xml;charset=UTF-8");
+            response.getWriter().print(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //        return "";
     }
 
 }

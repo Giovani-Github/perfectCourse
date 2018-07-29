@@ -198,12 +198,40 @@
         //获取输入内容
         var oSize = $(this).siblings('.flex-text-wrap').find('.comment-input').val();
         console.log(oSize);
-        //动态创建评论模块
-        oHtml = '<div class="comment-show-con clearfix"> <img class="comment-show-con-img pull-left" src="images/aa.png" alt=""> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">名字：</a> <span class="my-pl-con">&nbsp;' + oSize + '</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">' + now + '</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a></a> </div> </div><div class="hf-list-con"></div></div> </div>';
-        if (oSize.replace(/(^\s*)|(\s*$)/g, "") != '') {
-            $(this).parents('.reviewArea ').siblings('.comment-show').prepend(oHtml);
-            $(this).siblings('.flex-text-wrap').find('.comment-input').prop('value', '').siblings('pre').find('span').text('');
-        }
+
+        var code;
+        // 请求服务器，进行评论创建
+        $.ajax({
+            type: 'POST',
+            url: '<c:url value="/comment/comment.action" />',
+            contentType: "application/json",
+            dataType: 'json',
+            // 封装json对象，传给服务器
+            data: JSON.stringify({
+                comment_id: '',
+                user_id: '${loginUser.user_id}',
+                video_id: '${video.video_id}',
+                content: oSize,
+                createtime: now
+            }),
+            success:
+                function (result) {
+                    alert(result.msg);
+                    if (result.code == 1)
+                        a();
+                }
+        })
+
+        function a() {
+            //动态创建评论模块
+            oHtml = '<div class="comment-show-con clearfix"> <img class="comment-show-con-img pull-left" src="<%=basePath%>images/aa.png" alt=""> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">${loginUser.username}&nbsp;:</a> <span class="my-pl-con">&nbsp;' + oSize + '</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">' + now + '</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a></a> </div> </div><div class="hf-list-con"></div></div> </div>';
+            if (oSize.replace(/(^\s*)|(\s*$)/g, "") != '') {
+                $('.reviewArea ').siblings('.comment-show').prepend(oHtml);
+                $('.comment-input').prop('value', '').siblings('pre').find('span').text('');
+            }
+        };
+
+
     });
 
     // 删除评论块
