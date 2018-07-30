@@ -143,8 +143,10 @@
                             <div class="date-dz"><span
                                     class="date-dz-left pull-left comment-time">${comment.createtime}</span>
                                 <div class="date-dz-right pull-right comment-pl-block">
-                                    <a href="javascript:;" class="removeBlock"
-                                       onclick="deleteComment('${comment.comment_id}')">删除</a></a>
+                                    <c:if test="${loginUser.user_id eq comment.user_id}">
+                                        <a href="javascript:;" class="removeBlock"
+                                           onclick="deleteComment('${comment.comment_id}')">删除</a></a>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="hf-list-con"></div>
