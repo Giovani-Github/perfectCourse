@@ -42,13 +42,13 @@ public class CommentContorller {
     public void comment(@RequestBody Comment comment, HttpServletResponse response, HttpServletRequest request) {
         // @requestBody表示接受json对像，解析到commnet
 
-        response.setContentType("text/xml;charset=UTF-8");
         Map<String, String> msg = new HashMap<String, String>();
 
         try {
             if (request.getSession().getAttribute("loginUser") == null) {
                 // 需要登陆后才能评论
                 msg.put("msg", "请先登录");
+                // 把数据转换成json字符串输出到前端页面
                 response.getWriter().print(JSONUtils.toJSONString(msg));
                 return;
             } else if (StringUtils.isEmpty(comment.getContent())) {

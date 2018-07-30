@@ -1,18 +1,19 @@
 package com.giovani.perc.controller;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.giovani.perc.exception.UserException;
 import com.giovani.perc.pojo.User;
 import com.giovani.perc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户信息请求处理
@@ -28,40 +29,73 @@ public class UserContorller {
     private UserService userService;
 
     /**
-     * 用户登录和注册功能
-     * 访问地址: http://localhost:8080/perfectCourse/user/userRL.action?method=regist
-     * 访问地址: http://localhost:8080/perfectCourse/user/userRL.action?method=login
+     * 注册功能
+     * 访问地址: http://localhost:8080/perfectCourse/user/regist.action
      *
-     * @Param: [model, user, method, request]
-     * @return: java.lang.String
+     * @Param: [user, response]
+     * @return: void
      * @Author: Giovani
-     * @Date: 2018/7/29 9:29
+     * @Date: 2018/7/30 11:27
      */
-    @RequestMapping("userRL")
-    public String userRL(Model model, User user, String method, HttpServletRequest request) {
+    @RequestMapping(value = "regist", method = RequestMethod.POST)
+    public void regist(User user, HttpServletResponse response) {
+        Map<String, String> msg = new HashMap<>();
+        try {
 
-        // 判断进行登录还是注册操作
-        if (method.equals("regist")) {
+            userService.regist(user);
+            msg.put("msg", "注册成功，可以进行登录");
+            response.getWriter().print(JSONUtils.toJSONString(msg));
+
+        } catch (UserException e) {
+
             try {
-                userService.regist(user);
-                model.addAttribute("msg", "注册成功");
-            } catch (UserException e) {
-                model.addAttribute("msg", e.getMessage());
+                msg.put("msg", e.getMessage());
+                response.getWriter().print(JSONUtils.toJSONString(msg));
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-        } else if (method.equals("login")) {
-            try {
-                User loginUser = userService.login(user);
-                if (loginUser != null) {
-                    request.getSession().setAttribute("loginUser", loginUser);
-                }
-                model.addAttribute("msg", "登录成功");
-            } catch (UserException e) {
-                model.addAttribute("msg", e.getMessage());
-            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
-        return "msg";
+    /**
+     * 登录功能
+     * 访问地址: http://localhost:8080/perfectCourse/user/login.action
+     *
+     * @Param: [user, response]
+     * @return: void
+     * @Author: Giovani
+     * @Date: 2018/7/30 11:27
+     */
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public void login(User user, HttpServletResponse response, HttpServletRequest request) {
+        Map<String, String> msg = new HashMap<>();
+        try {
 
+            User loginUser = userService.login(user);
+
+            if (loginUser != null) {
+                request.getSession().setAttribute("loginUser", loginUser);
+            }
+
+            msg.put("msg", "登录成功");
+            msg.put("code", "1");
+            response.getWriter().print(JSONUtils.toJSONString(msg));
+
+        } catch (UserException e) {
+
+            try {
+                msg.put("msg", e.getMessage());
+                response.getWriter().print(JSONUtils.toJSONString(msg));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -72,26 +106,19 @@ public class UserContorller {
      * @Author: Giovani
      * @Date: 2018/7/29 9:32
      */
-    @RequestMapping("logout")
-    public String logout(HttpServletRequest request) {
-
-        request.getSession().removeAttribute("loginUser");
-        return "redirect:/page/toHome.action";
-        //        return "index";
-
-    }
-
-    @RequestMapping(value = "text", method = RequestMethod.POST)
-    public void text(@RequestBody User user, HttpServletResponse response) {
-        System.out.println(user);
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
 
         try {
-            response.setContentType("text/xml;charset=UTF-8");
-            response.getWriter().print(1);
+            request.getSession().removeAttribute("loginUser");
+            Map<String, String> msg = new HashMap<>();
+            msg.put("msg", "成功退出");
+            msg.put("code", "1");
+            response.getWriter().print(JSONUtils.toJSONString(msg));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //        return "";
+
     }
 
 }

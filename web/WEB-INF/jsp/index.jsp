@@ -69,15 +69,12 @@
                                     <a href="#">消息</a>
                                 </li>
                                 <li><a href="#">修改密码</a></li>
-                                <li><a href="<c:url value='/user/logout.action' />">退出登录</a></li>
+                                <li><a href="#" onclick="logout();">退出登录</a></li>
                             </ul>
                         </c:when>
                         <c:otherwise>
                             <ul class="dropdown-menu ontLog">
-                                <form action="<c:url value='/user/userRL.action' />" id="user" class="ontLog"
-                                      method="get"
-                                      enctype="multipart/form-data">
-                                    <input id="method" type="hidden" name="method" value="login">
+                                <form action="#" id="user" class="ontLog" method="post" enctype="multipart/form-data">
                                     <input name="username" type="text" class="form-control form-control-perfect ontLog"
                                            placeholder="用户名">
                                     <input name="password" type="password"
@@ -139,23 +136,6 @@
                 <giovani:page url="${pageContext.request.contextPath }/page/toHome.action"/>
             </nav>
 
-            <%--<ul class="pagination-plain pagination-perfecet">--%>
-            <%--<c:forEach items="${videoPage.}">--%>
-            <%--<li class="previous"><a href="#fakelink">上一页</a></li>--%>
-            <%--<li><a href="#fakelink">1</a></li>--%>
-            <%--<li><a href="#fakelink">2</a></li>--%>
-            <%--<li><a href="#fakelink">3</a></li>--%>
-            <%--<li><a href="#fakelink">4</a></li>--%>
-            <%--<li class="active"><a href="#fakelink">5</a></li>--%>
-            <%--<li><a href="#fakelink">6</a></li>--%>
-            <%--<li><a href="#fakelink">7</a></li>--%>
-            <%--<li><a href="#fakelink">8</a></li>--%>
-            <%--<li><a href="#fakelink">9</a></li>--%>
-            <%--<li><a href="#fakelink">10</a></li>--%>
-            <%--<li class="next"><a href="#fakelink">下一页</a></li>--%>
-            <%--</c:forEach>--%>
-            <%--</ul>--%>
-
             <!-- /分页 -->
         </div>
     </div>
@@ -171,21 +151,59 @@
 
 
 <script type="text/javascript">
+
     // 用户注册
     $("#regist").on("click", function () {
-        var form = document.getElementById('user');
-        // 更改method参数，说明要进行什么操作
-        document.getElementById("method").setAttribute("value", "regist");
-        form.submit()
+        alert($('#user').serialize());
+
+        $("#user").submit(function () {
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "<c:url value='/user/regist.action' /> ",
+                data: $('#user').serialize(), // user是表单id，序列化后的格式:username=kingli&password=kingli
+                dataType: "json", // 服务器返回的数据类型
+                success: function (result) {
+                    alert(result.msg)
+                }
+            })
+        })
     });
 
     // 用户登录
     $("#login").on("click", function () {
-        var form = document.getElementById('user');
-        // 更改method参数，说明要进行什么操作
-        document.getElementById("method").setAttribute("value", "login");
-        form.submit()
+        $("#user").submit(function () {
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "<c:url value='/user/login.action' /> ",
+                data: $('#user').serialize(),
+                dataType: "json", // 服务器返回的数据类型
+                success: function (result) {
+                    alert(result.msg)
+                    if (result.code == 1) {
+                        window.location.reload();
+                    }
+                }
+            })
+        })
     });
+
+    // 退出登录
+    function logout() {
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "<c:url value='/user/logout.action' /> ",
+            dataType: "json", // 服务器返回的数据类型
+            success: function (result) {
+                alert(result.msg)
+                if (result.code == 1) {
+                    window.location.reload();
+                }
+            }
+        })
+    }
 </script>
 </div>
 </body>

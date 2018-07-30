@@ -41,10 +41,10 @@
                 </li>
                 <li class="active"><a href="#">课程管理</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="#" role="search">
+            <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                        <input class="form-control" id="nameSearch" name="videoname" type="search" placeholder="Search">
                         <span class="input-group-btn">
                               <button type="submit" class="btn"><span class="fui-search"></span></button>
                             </span>
@@ -71,15 +71,12 @@
                                     <a href="#">消息</a>
                                 </li>
                                 <li><a href="#">修改密码</a></li>
-                                <li><a href="<c:url value='/user/logout.action' />">退出登录</a></li>
+                                <li><a href="#" onclick="logout();">退出登录</a></li>
                             </ul>
                         </c:when>
                         <c:otherwise>
                             <ul class="dropdown-menu ontLog">
-                                <form action="<c:url value='/user/userRL.action' />" id="user" class="ontLog"
-                                      method="get"
-                                      enctype="multipart/form-data">
-                                    <input id="method" type="hidden" name="method" value="login">
+                                <form action="#" id="user" class="ontLog" method="post" enctype="multipart/form-data">
                                     <input name="username" type="text" class="form-control form-control-perfect ontLog"
                                            placeholder="用户名">
                                     <input name="password" type="password"
@@ -171,22 +168,57 @@
 
 
 <script type="text/javascript">
+
     // 用户注册
     $("#regist").on("click", function () {
-        var form = document.getElementById('user');
-        // 更改method参数，说明要进行什么操作
-        document.getElementById("method").setAttribute("value", "regist");
-        form.submit()
+        $("#user").submit(function () {
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "<c:url value='/user/regist.action' /> ",
+                data: $('#user').serialize(),
+                dataType: "json", // 服务器返回的数据类型
+                success: function (result) {
+                    alert(result.msg)
+                }
+            })
+        })
     });
 
     // 用户登录
     $("#login").on("click", function () {
-        var form = document.getElementById('user');
-        // 更改method参数，说明要进行什么操作
-        document.getElementById("method").setAttribute("value", "login");
-        form.submit()
+        $("#user").submit(function () {
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: "<c:url value='/user/login.action' /> ",
+                data: $('#user').serialize(),
+                dataType: "json", // 服务器返回的数据类型
+                success: function (result) {
+                    alert(result.msg)
+                    if (result.code == 1) {
+                        window.location.reload();
+                    }
+                }
+            })
+        })
     });
 
+    // 退出登录
+    function logout() {
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "<c:url value='/user/logout.action' /> ",
+            dataType: "json", // 服务器返回的数据类型
+            success: function (result) {
+                alert(result.msg)
+                if (result.code == 1) {
+                    window.location.reload();
+                }
+            }
+        })
+    }
 
     // textarea高度自适应
     $('.content').flexText();
@@ -218,13 +250,12 @@
         var oSize = $(this).siblings('.flex-text-wrap').find('.comment-input').val();
         console.log(oSize);
 
-        var code;
         // 请求服务器，进行评论创建
         $.ajax({
             type: 'POST',
             url: '<c:url value="/comment/comment.action" />',
-            contentType: "application/json",
-            dataType: 'json',
+            contentType: "application/json", // 必须告知内容类型为json
+            dataType: 'json', // 制定服务器返回数据类型是json
             // 封装json对象，传给服务器
             data: JSON.stringify({
                 comment_id: '',
@@ -237,8 +268,7 @@
                 function (result) {
                     alert(result.msg);
                     if (result.code == 1)
-                        window.location.reload();
-                    // a();
+                        window.location.reload(); // 刷新页面
                 }
         })
 
