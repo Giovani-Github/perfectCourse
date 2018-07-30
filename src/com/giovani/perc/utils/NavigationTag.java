@@ -42,12 +42,12 @@ public class NavigationTag extends TagSupport {
             if (page.getTotal() % page.getSize() > 0) {
                 pageCount++;
             }
-            writer.print("<nav><ul class=\"pagination\">");
+            writer.print("<ul class=\"pagination-plain pagination-perfecet\">");
             // 显示“上一页”按钮
             if (page.getPage() > 1) {
                 String preUrl = append(url, "page", page.getPage() - 1);
                 preUrl = append(preUrl, "rows", page.getSize());
-                writer.print("<li><a href=\"" + preUrl + "\">上一页</a></li>");
+                writer.print("<li class=\"previous\" ><a href=\"" + preUrl + "\">上一页</a></li>");
             } else {
                 writer.print("<li class=\"disabled\"><a href=\"#\">上一页</a></li>");
             }
@@ -69,11 +69,11 @@ public class NavigationTag extends TagSupport {
             if (page.getPage() < pageCount) {
                 String nextUrl = append(url, "page", page.getPage() + 1);
                 nextUrl = append(nextUrl, "rows", page.getSize());
-                writer.print("<li><a href=\"" + nextUrl + "\">下一页</a></li>");
+                writer.print("<li class=\"next\"><a href=\"" + nextUrl + "\">下一页</a></li>");
             } else {
                 writer.print("<li class=\"disabled\"><a href=\"#\">下一页</a></li>");
             }
-            writer.print("</nav>");
+            //            writer.print("</nav>");
         } catch (IOException e) {
             e.printStackTrace();
         }

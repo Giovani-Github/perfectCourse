@@ -15,7 +15,7 @@ public class QueryVo {
     // 数据库从哪一条数据开始查
     private Integer start;
     // 每页显示数据条数
-    private Integer rows = 9;
+    private Integer rows = 3;
 
     public String getVideoname() {
         return videoname;

@@ -164,6 +164,10 @@ body {
 /* 导航条 end */
 
 /* 分页 begin*/
+.nav-pagination {
+    margin-top: 50px;
+}
+
 .pagination-perfecet li > a {
     color: #28a4c9;
     text-decoration: none;

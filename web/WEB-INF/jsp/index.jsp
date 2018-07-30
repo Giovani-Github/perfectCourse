@@ -39,10 +39,10 @@
                 </li>
                 <li class="active"><a href="#">课程管理</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="#" role="search">
+            <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                        <input class="form-control" id="nameSearch" name="videoname" type="search" placeholder="Search">
                         <span class="input-group-btn">
                               <button type="submit" class="btn"><span class="fui-search"></span></button>
                             </span>
@@ -114,7 +114,7 @@
             <!-- 視頻展示列表 -->
             <div class="row">
 
-                <c:forEach items="${videoPage.rows }" var="video">
+                <c:forEach items="${page.rows }" var="video">
                     <div class="col-sm-6  col-md-4">
                         <div class="thumbnail">
                             <a class="lightbox" href="<%=basePath%>page/toVideo.action?video_id=${video.video_id}">
@@ -135,7 +135,9 @@
             <!-- /視頻展示列表 -->
 
             <!-- 分页 -->
-            <giovani:page url="${pageContext.request.contextPath }/page/toHome.action"/>
+            <nav class="nav-pagination">
+                <giovani:page url="${pageContext.request.contextPath }/page/toHome.action"/>
+            </nav>
 
             <%--<ul class="pagination-plain pagination-perfecet">--%>
             <%--<c:forEach items="${videoPage.}">--%>

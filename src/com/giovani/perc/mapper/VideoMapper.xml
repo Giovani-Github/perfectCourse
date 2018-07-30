@@ -9,7 +9,12 @@
     </select>
 
     <select id="findVideoCount" parameterType="QueryVo" resultType="int">
-        SELECT count(1) FROM t_video WHERE videoname = #{videoname}
+        SELECT count(1) FROM t_video
+        <where>
+            <if test="videoname != null and videoname != ''">
+                AND videoname LIKE '%${videoname}%'
+            </if>
+        </where>
     </select>
 
     <select id="findVidoeById" parameterType="String" resultType="Video">

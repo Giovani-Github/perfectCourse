@@ -45,7 +45,7 @@ public class PageContorller {
         Page<Video> videoPage = videoService.findVideoList(queryVo);
 
         // 存入模型中，返回到页面上
-        model.addAttribute("videoPage", videoPage);
+        model.addAttribute("page", videoPage);
         model.addAttribute("queryVo", queryVo);
 
         // 带着模型数据返回idnex页面
