@@ -154,7 +154,6 @@
 
     // 用户注册
     $("#regist").on("click", function () {
-        alert($('#user').serialize());
 
         $("#user").submit(function () {
             $.ajax({
