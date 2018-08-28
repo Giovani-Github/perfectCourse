@@ -37,7 +37,7 @@
                         首页
                     </a>
                 </li>
-                <li class="active"><a href="#">课程管理</a></li>
+                <li class="active"><a href="<c:url value='/page/toIntroduce.action'/>">相关介绍</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
                 <div class="form-group">

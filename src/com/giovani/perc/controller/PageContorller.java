@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -75,6 +78,74 @@ public class PageContorller {
         model.addAttribute("commentList", commentQueryVoList);
 
         return "video";
+    }
+
+    /**
+     * 前往课程简介页
+     * 访问地址：http://localhost:8080/perfectCourse/page/toIntroduce.action
+     *
+     * @param
+     * @return java.lang.String
+     * @Author Giovani
+     * @Date 2018/8/27 14:20
+     */
+    @RequestMapping("toIntroduce")
+    public String toIntroduce(Model model, String video_id) {
+
+        //        // 根据id查询出视频
+        //        Video video = videoService.findVideoById(video_id);
+        //        // 根据视频id查询出评论列表
+        //        List<CommentQueryVo> commentQueryVoList = commentService.findCommentListByVideoId(video_id);
+        //
+        //        // 存入模型中，返回到页面上
+        //        model.addAttribute("video", video);
+        //        model.addAttribute("commentList", commentQueryVoList);
+
+        return "introduce";
+    }
+
+    /**
+     * 前往pdf文件详情页
+     *
+     * @param
+     * @return void
+     * @Author Giovani
+     * @Date 2018/8/28 11:05
+     */
+    @RequestMapping("toPdfDetails")
+    public void toPdfDetails(HttpServletRequest request, HttpServletResponse response, String fileName) {
+        // 文件的路径
+        File pdfFile = new File(request.getServletContext().getRealPath("/pdf/" + fileName + ".pdf"));
+        response.setContentType("application/pdf");
+        FileInputStream in = null;
+        OutputStream out = null;
+
+        // 把文件输出到流中
+        try {
+
+            in = new FileInputStream(pdfFile);
+            out = response.getOutputStream();
+
+            byte[] b = new byte[1024];
+            while ((in.read(b)) != -1) {
+                out.write(b);
+            }
+
+            out.flush();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     @RequestMapping("toMsg")
