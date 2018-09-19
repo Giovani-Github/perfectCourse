@@ -38,7 +38,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Video findVideoById(String video_id) {
+    public Video findVideoById(Long video_id) {
         Video vidoe = videoMapper.findVidoeById(video_id);
         return vidoe;
     }

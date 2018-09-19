@@ -63,7 +63,7 @@ public class PageContorller {
      * @Date: 2018/7/21 20:58
      */
     @RequestMapping("toVideo")
-    public String toVideo(Model model, String video_id) {
+    public String toVideo(Model model, Long video_id) {
 
         // 根据id查询出视频
         Video video = videoService.findVideoById(video_id);
@@ -78,7 +78,7 @@ public class PageContorller {
     }
 
     @RequestMapping("toMsg")
-    public String toMsg(Model model, String video_id) {
+    public String toMsg(Model model, Long video_id) {
         return "msg";
     }
 }

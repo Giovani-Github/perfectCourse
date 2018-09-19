@@ -31,7 +31,7 @@ public interface CommentService {
      * @Author: Giovani
      * @Date: 2018/7/29 16:35
      */
-    public List<CommentQueryVo> findCommentListByVideoId(String video_id);
+    public List<CommentQueryVo> findCommentListByVideoId(Long video_id);
 
     /**
      * 删除评论
@@ -41,5 +41,5 @@ public interface CommentService {
      * @Author: Giovani
      * @Date: 2018/7/29 17:10
      */
-    public void deleteComment(String comment_id);
+    public void deleteComment(Long comment_id);
 }

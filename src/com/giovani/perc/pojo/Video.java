@@ -9,7 +9,7 @@ package com.giovani.perc.pojo;
 public class Video {
 
     // 视频id
-    private String video_id;
+    private Long video_id;
     // 视频名称
     private String videoname;
     // 视频存放目录
@@ -37,11 +37,11 @@ public class Video {
         this.filename = filename;
     }
 
-    public String getVideo_id() {
+    public Long getVideo_id() {
         return video_id;
     }
 
-    public void setVideo_id(String video_id) {
+    public void setVideo_id(Long video_id) {
         this.video_id = video_id;
     }
 

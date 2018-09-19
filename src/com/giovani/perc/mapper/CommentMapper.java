@@ -30,7 +30,7 @@ public interface CommentMapper {
      * @Author: Giovani
      * @Date: 2018/7/29 16:25
      */
-    public List<CommentQueryVo> findCommentListByVideoId(String video_id);
+    public List<CommentQueryVo> findCommentListByVideoId(Long video_id);
 
     /**
      * 删除评论
@@ -40,5 +40,5 @@ public interface CommentMapper {
      * @Author: Giovani
      * @Date: 2018/7/29 17:08
      */
-    public void deleteComment(String comment_id);
+    public void deleteComment(Long comment_id);
 }
