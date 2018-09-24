@@ -17,7 +17,7 @@
         </where>
     </select>
 
-    <select id="findVidoeById" parameterType="String" resultType="Video">
+    <select id="findVidoeById" parameterType="Long" resultType="Video">
         SELECT * FROM t_video WHERE video_id = #{video_id}
     </select>
 

@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // 添加用户id
-        user.setUser_id(StringUtils.uuid());
+//        user.setUser_id(StringUtils.uuid());
 
         // 添加到数据库
         userMapper.addUser(user);

@@ -90,7 +90,7 @@ public class CommentContorller {
      * @Date: 2018/7/29 17:10
      */
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public void delete(@RequestBody String comment_id, HttpServletResponse response) {
+    public void delete(@RequestBody Long comment_id, HttpServletResponse response) {
 
         response.setContentType("text/xml;charset=UTF-8");
         Map<String, String> msg = new HashMap<>();

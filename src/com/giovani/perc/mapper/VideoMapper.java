@@ -41,5 +41,5 @@ public interface VideoMapper {
      * @Author: Giovani
      * @Date: 2018/7/25 10:12
      */
-    public Video findVidoeById(String video_id);
+    public Video findVidoeById(Long video_id);
 }

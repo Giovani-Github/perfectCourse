@@ -30,6 +30,6 @@ public interface VideoService {
      * @Author: Giovani
      * @Date: 2018/7/25 10:15
      */
-    public Video findVideoById(String video_id);
+    public Video findVideoById(Long video_id);
 
 }

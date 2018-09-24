@@ -1,5 +1,7 @@
 drop table if exists t_comment;
 
+drop table if exists t_doc;
+
 drop table if exists t_user;
 
 drop table if exists t_video;
@@ -19,6 +21,23 @@ create table t_comment
 );
 
 alter table t_comment comment '每个视频下面的评论内容';
+
+/*==============================================================*/
+/* Table: t_doc                                                 */
+/*==============================================================*/
+create table t_doc
+(
+   doc_id               varchar(50) not null,
+   docname              varchar(40) comment '视频的名称
+            ',
+   docdir               varchar(600) comment '视频存放在项目中的那个目录，尽量使用相对目录',
+   docinfo              varchar(2000) comment '对视频内容的说明',
+   filename             varchar(40),
+   filetype             varchar(40),
+   primary key (doc_id)
+);
+
+alter table t_doc comment 'pdf文档文件';
 
 /*==============================================================*/
 /* Table: t_user                                                */
