@@ -140,28 +140,6 @@
         $("#displayPdfIframe").attr("src", '<c:url value="/lib/pdfjs/web/viewer.html" />?file=' + encodeURIComponent('<c:url value="/page/toPdfDetails.action?fileName=demo"/>'));
     });
 
-
-    // 禁止右键菜单
-    document.oncontextmenu = function () {
-        return false;
-    };
-    // 禁止文字选择
-    document.onselectstart = function () {
-        return false;
-    };
-    // 禁止复制
-    document.oncopy = function () {
-        return false;
-    };
-    // 禁止剪切
-    document.oncut = function () {
-        return false;
-    };
-    // 禁止粘贴
-    document.onpaste = function () {
-        return false;
-    };
-
     // 用户注册
     $("#regist").on("click", function () {
 
