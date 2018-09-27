@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<%=basePath%>css/home.css">
 
     <script type="text/javascript">
+
     </script>
 </head>
 <body>
@@ -40,7 +41,7 @@
                         首页
                     </a>
                 </li>
-                <li class="active"><a href="<%=basePath%>page/toDocList.action">相关资料</a></li>
+                <li class="active"><a href="#">课程简介</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
                 <div class="form-group">
@@ -112,6 +113,7 @@
         </div>
     </div>
 
+
     <!-- 分页 -->
     <nav class="nav-pagination">
         <giovani:page url="${pageContext.request.contextPath }/page/toHome.action"/>
@@ -131,6 +133,7 @@
 <script type="text/javascript" src="<%=basePath%>lib/jquery.form.js"></script>
 <%--<script type="text/javascript" src="<%=basePath%>lib/pdfjs/build/pdf.js"></script>--%>
 <script type="text/javascript">
+
     // 读取服务器上的pdf，在网页进行展示
     $(function () {
         // 因为url中不能存在两个'?',所以使用encodeURIComponent进行编码，解码工作在pdf.js中自动帮我们完成
@@ -139,6 +142,7 @@
 
     // 用户注册
     $("#regist").on("click", function () {
+
         $("#user").submit(function () {
             $.ajax({
                 async: false,
@@ -152,6 +156,7 @@
             })
         })
     });
+
     // 用户登录
     $("#login").on("click", function () {
         $("#user").submit(function () {
@@ -170,7 +175,6 @@
             })
         })
     });
-
 
     // 退出登录
     function logout() {
