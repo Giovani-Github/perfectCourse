@@ -1,9 +1,8 @@
 package com.giovani.perc.controller;
 
-import com.giovani.perc.pojo.CommentQueryVo;
-import com.giovani.perc.pojo.QueryVo;
-import com.giovani.perc.pojo.Video;
+import com.giovani.perc.pojo.*;
 import com.giovani.perc.service.CommentService;
+import com.giovani.perc.service.DocService;
 import com.giovani.perc.service.VideoService;
 import com.giovani.perc.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -25,13 +27,77 @@ public class PageContorller {
 
     @Autowired
     private VideoService videoService;
-
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private DocService docService;
+
+    /**
+     * 前往文档列表页
+     *
+     * @Param: [model, docQueryVo]
+     * @return: java.lang.String
+     * @Author: Giovani
+     * @Date: 2018/9/20 10:02
+     */
+    @RequestMapping("toDocList")
+    public String toDocList(Model model, DocQueryVo docQueryVo) {
+
+        Page<Doc> docPage = docService.findDocList(docQueryVo);
+        model.addAttribute("page", docPage);
+        model.addAttribute("docQueryVo", docQueryVo);
+        return "docList";
+
+    }
+
+    /**
+     * 前往pdf文件详情页
+     * http://localhost:8080/page/toPdfDetails.action?fileName=demo
+     *
+     * @param
+     * @return void
+     * @Author Giovani
+     * @Date 2018/8/28 11:05
+     */
+    @RequestMapping("toPdfDetails")
+    public void toPdfDetails(HttpServletRequest request, HttpServletResponse response, String fileName) {
+        // 文件的路径
+        File pdfFile = new File(request.getServletContext().getRealPath("/pdf/" + fileName + ".pdf"));
+        response.setContentType("application/pdf");
+        FileInputStream in = null;
+        OutputStream out = null;
+
+        // 把文件输出到流中
+        try {
+
+            in = new FileInputStream(pdfFile);
+            out = response.getOutputStream();
+
+            byte[] b = new byte[1024];
+            while ((in.read(b)) != -1) {
+                out.write(b);
+            }
+
+            out.flush();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     /**
      * 前往主页
-     * 访问地址：http://localhost:8080/perfectCourse/page/toHome.action
+     * 访问地址：http://localhost:8080/page/toHome.action
      *
      * @Param: []
      * @return: void
@@ -55,7 +121,7 @@ public class PageContorller {
 
     /**
      * 前往视频播放页
-     * 访问地址：http://localhost:8080/perfectCourse/page/toVideo.action
+     * 访问地址：http://localhost:8080/page/toVideo.action
      *
      * @Param: []
      * @return: java.lang.String

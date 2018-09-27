@@ -32,12 +32,12 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
             <ul class="nav navbar-nav">
-                <li>
+                <li class="active">
                     <a href="<%=basePath%>page/toHome.action">
                         首页
                     </a>
                 </li>
-                <li class="active"><a href="#">课程管理</a></li>
+                <li><a href="<%=basePath%>page/toDocList.action">相关资料</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
                 <div class="form-group">
@@ -103,7 +103,7 @@
 
         <h1>精品课程</h1>
 
-        <p class="page-description text-center">随堂录制的一些精彩部分的教学视频</p>
+        <p class="page-description text-center">简介</p>
 
         <div class="per-gallery">
 
@@ -111,18 +111,18 @@
             <!-- 視頻展示列表 -->
             <div class="row">
 
-                <c:forEach items="${page.rows }" var="video">
+                <c:forEach items="${page.rows }" var="doc">
                     <div class="col-sm-6  col-md-4">
                         <div class="thumbnail">
-                            <a class="lightbox" href="<%=basePath%>page/toVideo.action?video_id=${video.video_id}">
+                            <a class="lightbox" href="<%=basePath%>page/toVideo.action?video_id=${doc.video_id}">
                                 <div class="courseBg text-center">
-                                        ${video.videoname}
+                                        ${doc.videoname}
 
                                 </div>
                             </a>
                             <div class="caption">
                                     <%--<h3>${video.videoname}</h3>--%>
-                                <p>${video.videoinfo}</p>
+                                <p>${doc.videoinfo}</p>
                             </div>
                         </div>
                     </div>

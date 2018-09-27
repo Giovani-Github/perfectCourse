@@ -11,9 +11,9 @@ drop table if exists t_video;
 /*==============================================================*/
 create table t_comment
 (
-   comment_id           varchar(50) not null,
-   user_id              varchar(50) comment '这条评论属于哪个用户',
-   video_id             varchar(50) comment '这条评论在哪个视频底下',
+   comment_id           integer not null auto_increment,
+   user_id              integer comment '这条评论属于哪个用户',
+   video_id             integer comment '这条评论在哪个视频底下',
    content              varchar(3000) comment '这条评论的内容
             ',
    createtime           timestamp comment '这条评论生成的时间',
@@ -27,7 +27,7 @@ alter table t_comment comment '每个视频下面的评论内容';
 /*==============================================================*/
 create table t_doc
 (
-   doc_id               varchar(50) not null,
+   doc_id               integer not null auto_increment,
    docname              varchar(40) comment '视频的名称
             ',
    docdir               varchar(600) comment '视频存放在项目中的那个目录，尽量使用相对目录',
@@ -44,7 +44,7 @@ alter table t_doc comment 'pdf文档文件';
 /*==============================================================*/
 create table t_user
 (
-   user_id              varchar(50) not null,
+   user_id              integer not null auto_increment,
    username             varchar(30),
    password             varchar(40),
    primary key (user_id)
@@ -57,7 +57,7 @@ alter table t_user comment '用户数据表';
 /*==============================================================*/
 create table t_video
 (
-   video_id             varchar(50) not null,
+   video_id             integer not null auto_increment,
    videoname            varchar(40) comment '视频的名称
             ',
    videodir             varchar(600) comment '视频存放在项目中的那个目录，尽量使用相对目录',

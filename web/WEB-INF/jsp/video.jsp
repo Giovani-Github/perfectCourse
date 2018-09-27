@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>精品课程</title>
+    <title>视频播放</title>
     <!-- Loading Flat UI -->
     <link rel="stylesheet" href="<%=basePath%>lib/bootstrap-3.3.6/css/bootstrap.min.css">
     <link href="<%=basePath%>lib/flat-ui-master/css/flat-ui.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                         首页
                     </a>
                 </li>
-                <li class="active"><a href="#">课程管理</a></li>
+                <li><a href="<%=basePath%>page/toDocList.action">相关资料</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
                 <div class="form-group">
