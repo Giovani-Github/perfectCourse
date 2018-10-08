@@ -58,7 +58,7 @@
 
 3. **controller调用controller**
 
-   ```
+   ```java
    @Controller
    @RequestMapping("user")
    public class UserContorller {
@@ -83,9 +83,9 @@
 
 6. ajax请求后台数据正确写法
 
-   `ajax:WEB-INF/jsp/video.jsp:253`
+   > WEB-INF/jsp/video.jsp:253
 
-   ```WEB-INF/jsp/video.jsp:253
+   ```javascript
    // 请求服务器，进行评论创建
    $.ajax({
        type: 'POST',
@@ -109,11 +109,11 @@
    })
    ```
 
-   
 
-   `java:com/giovani/perc/controller/CommentContorller.java:41`
 
-   ```
+   > com/giovani/perc/controller/CommentContorller.java:41
+
+   ```java
    @RequestMapping(value = "comment", method = RequestMethod.POST)
    public void comment(@RequestBody Comment comment, HttpServletResponse response, HttpServletRequest request) {
        // @requestBody表示接受json对像，解析到commnet
@@ -168,9 +168,9 @@
 
 8. **`ajax`提交`form`表单的操作**
 
-   `html:WEB-INF/jsp/index.jsp:77`
+   > WEB-INF/jsp/index.jsp:77
 
-   ```
+   ```html
    <form action="#" id="user" class="ontLog" method="post" enctype="multipart/form-data">
        <input name="username" type="text" class="form-control form-control-perfect ontLog"
               placeholder="用户名">
@@ -187,9 +187,9 @@
    </form>
    ```
 
-   `ajax:WEB-INF/jsp/index.jsp:155`
+   > WEB-INF/jsp/index.jsp:155`
 
-   ```
+   ```javascript
    // 用户注册
    $("#regist").on("click", function () {
        alert($('#user').serialize());
@@ -227,9 +227,9 @@
        })
    });
    ```
-   `java:com/giovani/perc/controller/UserContorller.java:40`
+   >  com/giovani/perc/controller/UserContorller.java:40
 
-   ```
+   ```java
    @RequestMapping(value = "regist", method = RequestMethod.POST)
    public void regist(User user, HttpServletResponse response) {
        Map<String, String> msg = new HashMap<>();
