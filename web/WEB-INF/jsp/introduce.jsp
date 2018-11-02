@@ -37,13 +37,13 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="<%=basePath%>page/toHome.action">
+                    <a href="<%=basePath%>/">
                         首页
                     </a>
                 </li>
                 <li class="active"><a href="#">课程简介</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
+            <form class="navbar-form navbar-left" action="<c:url value='/'/> " role="search">
                 <div class="form-group">
                     <div class="input-group">
                         <input class="form-control" id="nameSearch" name="videoname" type="search" placeholder="Search">
@@ -116,7 +116,7 @@
 
     <!-- 分页 -->
     <nav class="nav-pagination">
-        <giovani:page url="${pageContext.request.contextPath }/page/toHome.action"/>
+        <giovani:page url="${pageContext.request.contextPath }/"/>
     </nav>
 
     <!-- /分页 -->
@@ -137,7 +137,7 @@
     // 读取服务器上的pdf，在网页进行展示
     $(function () {
         // 因为url中不能存在两个'?',所以使用encodeURIComponent进行编码，解码工作在pdf.js中自动帮我们完成
-        $("#displayPdfIframe").attr("src", '<c:url value="/lib/pdfjs/web/viewer.html" />?file=' + encodeURIComponent('<c:url value="/page/toPdfDetails.action?fileName=demo"/>'));
+        $("#displayPdfIframe").attr("src", '<c:url value="/lib/pdfjs/web/viewer.html" />?file=' + encodeURIComponent('<c:url value="toPdfDetails?fileName=demo"/>'));
     });
 
     // 用户注册
@@ -147,7 +147,7 @@
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "<c:url value='/user/regist.action' /> ",
+                url: "<c:url value='/user/regist' /> ",
                 data: $('#user').serialize(), // user是表单id，序列化后的格式:username=kingli&password=kingli
                 dataType: "json", // 服务器返回的数据类型
                 success: function (result) {
@@ -163,7 +163,7 @@
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "<c:url value='/user/login.action' /> ",
+                url: "<c:url value='/user/login' /> ",
                 data: $('#user').serialize(),
                 dataType: "json", // 服务器返回的数据类型
                 success: function (result) {
@@ -181,7 +181,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "<c:url value='/user/logout.action' /> ",
+            url: "<c:url value='/user/logout' /> ",
             dataType: "json", // 服务器返回的数据类型
             success: function (result) {
                 alert(result.msg)

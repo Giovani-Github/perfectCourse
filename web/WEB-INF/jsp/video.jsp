@@ -35,13 +35,13 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="<%=basePath%>page/toHome.action">
+                    <a href="<%=basePath%>/">
                         首页
                     </a>
                 </li>
-                <li><a href="<%=basePath%>page/toDocList.action">相关资料</a></li>
+                <li><a href="<%=basePath%>toDocList">相关资料</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="<c:url value='/page/toHome.action'/> " role="search">
+            <form class="navbar-form navbar-left" action="<c:url value='/'/> " role="search">
                 <div class="form-group">
                     <div class="input-group">
                         <input class="form-control" id="nameSearch" name="videoname" type="search" placeholder="Search">
@@ -112,7 +112,7 @@
 
             <div class="video-perfect">
                 <video class="video-js" preload="auto" poster="docs/assets/img/video/poster.jpg" data-setup="{}">
-                    <source src="<%=basePath%>${video.videodir}/${video.filename}${video.filetype}" type="video/webm">
+                    <source src="<%=basePath%>${video.videodir}/${video.filename}${video.filetype}" type="video/mp4">
                     <!--<source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm">-->
                 </video>
             </div>
@@ -175,7 +175,7 @@
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "<c:url value='/user/regist.action' /> ",
+                url: "<c:url value='/user/regist' /> ",
                 data: $('#user').serialize(),
                 dataType: "json", // 服务器返回的数据类型
                 success: function (result) {
@@ -191,7 +191,7 @@
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "<c:url value='/user/login.action' /> ",
+                url: "<c:url value='/user/login' /> ",
                 data: $('#user').serialize(),
                 dataType: "json", // 服务器返回的数据类型
                 success: function (result) {
@@ -209,7 +209,7 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "<c:url value='/user/logout.action' /> ",
+            url: "<c:url value='/user/logout' /> ",
             dataType: "json", // 服务器返回的数据类型
             success: function (result) {
                 alert(result.msg)
@@ -253,7 +253,7 @@
         // 请求服务器，进行评论创建
         $.ajax({
             type: 'POST',
-            url: '<c:url value="/comment/comment.action" />',
+            url: '<c:url value="/comment/comment" />',
             contentType: "application/json", // 必须告知内容类型为json
             dataType: 'json', // 制定服务器返回数据类型是json
             // 封装json对象，传给服务器
@@ -290,7 +290,7 @@
         if (confirm('确定要删除评论吗?')) {
             $.ajax({
                     type: 'POST',
-                    url: '<c:url value="/comment/delete.action" />',
+                url: '<c:url value="/comment/delete" />',
                     contentType: "application/json",
                     dataType:
                         'json',

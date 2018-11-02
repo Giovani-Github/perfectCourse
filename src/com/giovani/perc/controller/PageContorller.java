@@ -22,7 +22,7 @@ import java.util.List;
  * @Create: 2018/7/21 16:23
  */
 @Controller
-@RequestMapping("page")
+//@RequestMapping("page")
 public class PageContorller {
 
     @Autowired
@@ -59,7 +59,7 @@ public class PageContorller {
      * @Author Giovani
      * @Date 2018/8/28 11:05
      */
-    @RequestMapping("toPdfDetails")
+    @RequestMapping("/toPdfDetails")
     public void toPdfDetails(HttpServletRequest request, HttpServletResponse response, String fileName) {
         // 文件的路径
         File pdfFile = new File(request.getServletContext().getRealPath("/pdf/" + fileName + ".pdf"));
@@ -104,7 +104,7 @@ public class PageContorller {
      * @Author: Giovani
      * @Date: 2018/7/21 16:26
      */
-    @RequestMapping("toHome")
+    @RequestMapping("/")
     public String toHome(Model model, QueryVo queryVo) {
 
         // 分页查询视频列表
@@ -175,41 +175,41 @@ public class PageContorller {
      * @Author Giovani
      * @Date 2018/8/28 11:05
      */
-    @RequestMapping("toPdfDetails")
-    public void toPdfDetails(HttpServletRequest request, HttpServletResponse response, String fileName) {
-        // 文件的路径
-        File pdfFile = new File(request.getServletContext().getRealPath("/pdf/" + fileName + ".pdf"));
-        response.setContentType("application/pdf");
-        FileInputStream in = null;
-        OutputStream out = null;
-
-        // 把文件输出到流中
-        try {
-
-            in = new FileInputStream(pdfFile);
-            out = response.getOutputStream();
-
-            byte[] b = new byte[1024];
-            while ((in.read(b)) != -1) {
-                out.write(b);
-            }
-
-            out.flush();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                in.close();
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
+    //    @RequestMapping("toPdfDetails")
+    //    public void toPdfDetails(HttpServletRequest request, HttpServletResponse response, String fileName) {
+    //        // 文件的路径
+    //        File pdfFile = new File(request.getServletContext().getRealPath("/pdf/" + fileName + ".pdf"));
+    //        response.setContentType("application/pdf");
+    //        FileInputStream in = null;
+    //        OutputStream out = null;
+    //
+    //        // 把文件输出到流中
+    //        try {
+    //
+    //            in = new FileInputStream(pdfFile);
+    //            out = response.getOutputStream();
+    //
+    //            byte[] b = new byte[1024];
+    //            while ((in.read(b)) != -1) {
+    //                out.write(b);
+    //            }
+    //
+    //            out.flush();
+    //
+    //        } catch (FileNotFoundException e) {
+    //            e.printStackTrace();
+    //        } catch (IOException e) {
+    //            e.printStackTrace();
+    //        } finally {
+    //            try {
+    //                in.close();
+    //                out.close();
+    //            } catch (IOException e) {
+    //                e.printStackTrace();
+    //            }
+    //        }
+    //
+    //    }
 
     @RequestMapping("toMsg")
     public String toMsg(Model model, Long video_id) {
