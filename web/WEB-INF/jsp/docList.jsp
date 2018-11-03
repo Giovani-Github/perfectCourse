@@ -33,10 +33,11 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-7">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="<%=basePath%>/">
+                    <a href="<%=basePath%>">
                         首页
                     </a>
                 </li>
+                <li><a href="<%=basePath%>toVideoList">教学视频</a></li>
                 <li class="active"><a href="<%=basePath%>toDocList">相关资料</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="<c:url value='/'/> " role="search">
@@ -65,10 +66,6 @@
                     <c:choose>
                         <c:when test="${not empty loginUser}">
                             <ul class="dropdown-menu alreadyLog">
-                                <li>
-                                    <a href="#">消息</a>
-                                </li>
-                                <li><a href="#">修改密码</a></li>
                                 <li><a href="#" onclick="logout();">退出登录</a></li>
                             </ul>
                         </c:when>
@@ -103,7 +100,7 @@
 
         <h1>相关资料</h1>
 
-        <p class="page-description text-center">简介</p>
+        <%--<p class="page-description text-center">简介</p>--%>
 
         <div class="per-gallery">
 

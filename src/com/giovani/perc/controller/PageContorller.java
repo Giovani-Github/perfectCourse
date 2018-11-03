@@ -32,6 +32,21 @@ public class PageContorller {
     @Autowired
     private DocService docService;
 
+    @RequestMapping("toVideoList")
+    public String toVideoList(Model model, QueryVo queryVo) {
+
+        // 分页查询视频列表
+        Page<Video> videoPage = videoService.findVideoList(queryVo);
+
+        // 存入模型中，返回到页面上
+        model.addAttribute("page", videoPage);
+        model.addAttribute("queryVo", queryVo);
+
+        // 带着模型数据返回videoList页面
+        return "videoList";
+
+    }
+
     /**
      * 前往文档列表页
      *
@@ -105,14 +120,19 @@ public class PageContorller {
      * @Date: 2018/7/21 16:26
      */
     @RequestMapping("/")
-    public String toHome(Model model, QueryVo queryVo) {
+    public String toHome(Model model, QueryVo queryVo, DocQueryVo docQueryVo) {
 
         // 分页查询视频列表
         Page<Video> videoPage = videoService.findVideoList(queryVo);
 
         // 存入模型中，返回到页面上
-        model.addAttribute("page", videoPage);
+        model.addAttribute("videoPage", videoPage);
         model.addAttribute("queryVo", queryVo);
+
+        // 分页查询文档列表
+        Page<Doc> docPage = docService.findDocList(docQueryVo);
+        model.addAttribute("docPage", docPage);
+        model.addAttribute("docQueryVo", docQueryVo);
 
         // 带着模型数据返回idnex页面
         return "index";
